@@ -1,7 +1,7 @@
 
-# Idea-SQL
+# Idea-Hub
 
-Idea-SQL is a Bash script designed to interact with a MySQL database to manage ideas. It provides functionalities to retrieve, backup, and add ideas to the database.
+Idea-Hub is a Bash script designed to interact with a MySQL database to manage ideas. It provides functionalities to retrieve, backup, and add ideas to the database.
 
 ## Features
 
@@ -12,7 +12,7 @@ Idea-SQL is a Bash script designed to interact with a MySQL database to manage i
 
 ## Usage
 
-To use Idea-SQL, run the script with the desired option:
+To use Idea-Hub, run the script with the desired option:
 
 ./idea.sh [option]
 
