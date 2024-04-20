@@ -25,7 +25,27 @@ elif [[ "$1" == "-help" ]]; then
     echo "Options:"
     echo "  -all     : Retrieve and display all ideas from the database."
     echo "  -backup  : Backup all ideas from the database to a text file."
+    echo "  -add     : Add a new idea to the database."
     echo "  -help    : Display this help message."
+elif [[ "$1" == "-add" ]]; then
+    # Check if all required arguments are provided
+    if [ -z "$2" ] || [ -z "$3" ]; then
+        echo "Usage: idea -add <name> <title> <description>"
+        exit 1
+    fi
+
+    # Assign provided arguments to variables
+    name="$2"
+    title="$3"
+    description="$4"
+
+    # SQL query to add the new idea to the database
+    query="INSERT INTO Ideas (Name, IdeaTitle, IdeaDescription) VALUES ('$name', '$title', '$description');"
+
+    # Execute the SQL query
+    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$query" 2> /dev/null
+
+    echo "New idea added to the database."
 else
     # SQL query to retrieve the last row based on timestamp and extract a variable
     query="SELECT Name, IdeaTitle, IdeaDescription FROM Ideas ORDER BY IdeasID DESC LIMIT 1;"
