@@ -1,0 +1,37 @@
+#!/bin/bash
+
+DB_HOST="***" #Enter the database ip
+DB_USER="***" #Enter the mysql database username
+DB_PASS="***" #Enter the mysql database passcode
+DB_NAME="***" #Enter the database name 
+
+if [[ "$1" == "-all" ]]; then
+    # SQL query to retrieve all rows from the Ideas table
+    all=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "SELECT * FROM Ideas;" 2> /dev/null)
+
+    # Print output
+    echo "$all"
+
+    # Save output to a text file
+    echo "$all" > all_ideas.txt
+elif [[ "$1" == "-backup" ]]; then
+    # SQL query to retrieve all rows from the Ideas table
+    all=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "SELECT * FROM Ideas;" 2> /dev/null)
+
+    # Save output to a text file
+    echo "$all" > all_ideas.txt
+elif [[ "$1" == "-help" ]]; then
+    echo "Usage: idea [option]"
+    echo "Options:"
+    echo "  -all     : Retrieve and display all ideas from the database."
+    echo "  -backup  : Backup all ideas from the database to a text file."
+    echo "  -help    : Display this help message."
+else
+    # SQL query to retrieve the last row based on timestamp and extract a variable
+    query="SELECT Name, IdeaTitle, IdeaDescription FROM Ideas ORDER BY IdeasID DESC LIMIT 1;"
+    # Execute the SQL query and store the result in a variable
+    result=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -se "$query" 2> /dev/null)
+
+    # Output the result
+    echo "The Latest Idea Is : $result"
+fi
