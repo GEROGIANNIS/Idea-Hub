@@ -7,7 +7,12 @@ CREATE TABLE ideas (
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
     key VARCHAR(50)
 );
-
+CREATE TABLE meetings_draft (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE,
+    title VARCHAR(255),
+    description TEXT
+);
 
 CREATE TABLE meetings (
     id INT AUTO_INCREMENT PRIMARY KEY,
