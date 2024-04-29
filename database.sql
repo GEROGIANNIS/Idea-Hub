@@ -5,8 +5,9 @@ CREATE TABLE ideas (
     title VARCHAR(255),
     description TEXT,
     date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    key VARCHAR(50)
+    `key` VARCHAR(50)
 );
+
 CREATE TABLE meetings_draft (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,
